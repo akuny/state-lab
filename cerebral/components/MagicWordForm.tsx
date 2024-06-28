@@ -1,0 +1,81 @@
+import React from 'react';
+import { connect } from '../presenter';
+import { sequences, state } from '../presenter/app.cerebral';
+
+export const MagicWordForm = connect(
+  {
+    form: state.form,
+    magicWordFormHelper: state.magicWordFormHelper,
+    magicWordResult: state.magicWordResult,
+    resetMagicWordFormSequence: sequences.resetMagicWordFormSequence,
+    submitMagicWordSequence: sequences.submitMagicWordSequence,
+    updateFormValueSequence: sequences.updateFormValueSequence,
+    validationErrors: state.validationErrors,
+  },
+  function MagicWordForm({
+    form,
+    magicWordFormHelper,
+    magicWordResult,
+    resetMagicWordFormSequence,
+    submitMagicWordSequence,
+    updateFormValueSequence,
+    validationErrors,
+  }) {
+    return (
+      <form
+        action=""
+        onSubmit={(e) => {
+          e.preventDefault();
+          submitMagicWordSequence();
+        }}
+      >
+        <label htmlFor="magicWord">Guess the magic word:</label>
+        <input
+          id="magicWord"
+          name="magicWord"
+          type="text"
+          value={form.magicWord || ''}
+          onChange={(e) => {
+            updateFormValueSequence({
+              key: e.target.name,
+              value: e.target.value,
+            });
+          }}
+        />
+
+        {validationErrors.magicWord && (
+          <>
+            <br />
+            <h3>Validation Errors</h3>
+            <span style={{ color: 'red' }}>{validationErrors.magicWord}</span>
+          </>
+        )}
+
+        {magicWordResult && (
+          <>
+            <br />
+            <h3>Result</h3>
+            <span style={{ color: 'black' }}>{magicWordResult}</span>
+          </>
+        )}
+
+        <br />
+        <br />
+
+        <button type="submit" disabled={!magicWordFormHelper.canSubmit}>
+          Submit
+        </button>
+
+        <button
+          style={{ marginLeft: '10px' }}
+          onClick={(e) => {
+            e.preventDefault();
+            resetMagicWordFormSequence();
+          }}
+        >
+          Reset
+        </button>
+      </form>
+    );
+  }
+);
