@@ -54,11 +54,8 @@ You can then add a script to the root directory's `package.json` to start your
 experiment. For example:
 
 ```json
-// package.json
 "scripts": {
-  // ...
   "start:redux-thunks": "webpack serve --config webpack.redux-thunks.config.js"
-  // ...
 },
 ```
 
