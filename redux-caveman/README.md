@@ -12,3 +12,9 @@ without the abstractions provided by [Redux Toolkit](https://redux-toolkit.js.or
 > Given the Redux docs refer to Redux Toolkit as the "official recommended
 > approach" for building production-grade apps using Redux, this experiment is
 > for educational purposes exclusively.
+
+## Observations
+
+- Setting up Redux without any abstractions results in a lot of verbose
+  boilerplate code, which creates visual noise. At this early juncture, it's
+  already obvious why the Redux team promotes Redux Toolkit to such an extent.
