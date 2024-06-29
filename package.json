@@ -6,7 +6,8 @@
     "build:cerebral": "webpack --config webpack.cerebral.config.js",
     "start:cerebral": "webpack serve --config webpack.cerebral.config.js",
     "build:exp-template": "webpack --config webpack.experiment-template.config.js",
-    "start:exp-template": "webpack serve --config webpack.experiment-template.config.js"
+    "start:exp-template": "webpack serve --config webpack.experiment-template.config.js",
+    "start:redux-caveman": "webpack serve --config webpack.redux-caveman.config.js"
   },
   "keywords": [],
   "author": "",
