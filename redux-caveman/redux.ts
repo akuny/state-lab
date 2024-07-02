@@ -5,6 +5,7 @@
  * from the core redux package will not be removed, but we encourage all users
  * to migrate to using Redux Toolkit for all Redux code."
  */
+import { useCallback, useEffect, useState } from 'react';
 import { createStore } from 'redux';
 
 type State = {
@@ -100,6 +101,37 @@ const appReducer = (state: State = initialState, action: ActionTypes) => {
 
 // Lets us dispatch actions as described above: `store.dispatch(resetForm());`
 export const store = createStore(appReducer);
+
+// Custom hook that lets components use the Redux store
+export const useReduxState = () => {
+  const [state, setState] = useState<State>(store.getState());
+
+  useEffect(() => {
+    const unsubscribe = store.subscribe(() => {
+      setState(store.getState());
+    });
+    return () => unsubscribe();
+  }, []);
+
+  return state;
+};
+
+// Custom hook that lets components dispatch actions to the store without
+// knowing about Redux per se
+const useEventHandlers = () => {
+  const change = useCallback((name: string, value: string) => {
+    store.dispatch(setForm({ [name]: value }));
+  }, []);
+
+  const reset = useCallback(() => {
+    store.dispatch(resetForm());
+  }, []);
+
+  return {
+    change,
+    reset,
+  };
+};
 
 // TODO start reasoning through how to dispatch actions to the Redux store
 // cleanly from the MagicWordForm component.
