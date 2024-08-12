@@ -6,7 +6,11 @@
     "build:cerebral": "webpack --config webpack.cerebral.config.js",
     "start:cerebral": "webpack serve --config webpack.cerebral.config.js",
     "build:exp-template": "webpack --config webpack.experiment-template.config.js",
-    "start:exp-template": "webpack serve --config webpack.experiment-template.config.js"
+    "start:exp-template": "webpack serve --config webpack.experiment-template.config.js",
+    "build:zustand": "webpack --config webpack.zustand.config.js",
+    "start:zustand": "webpack serve --config webpack.zustand.config.js",
+    "build:cerebral-to-zustand": "webpack --config webpack.cerebral-to-zustand.config.js",
+    "start:cerebral-to-zustand": "webpack serve --config webpack.cerebral-to-zustand.config.js"
   },
   "keywords": [],
   "author": "",
@@ -17,7 +21,8 @@
     "lodash": "^4.17.21",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
     "@babel/core": "^7.24.7",
